@@ -831,8 +831,8 @@ function addall(bootadress)
 
   local proxys = {}
   for a in component.list("filesystem", true) do
-    if a ~= ADDRESS and component.invoke(a, "getLabel") ~= "tmpfs" and (a:sub(1, #bootadress) ~= bootadress or
-     component.invoke(a, "getLabel") ~= bootadress) then
+    if a ~= ADDRESS and component.invoke(a, "getLabel") ~= "tmpfs" and not (a:sub(1, #bootadress) == bootadress or
+     component.invoke(a, "getLabel") == bootadress) then
       table.insert(proxys, component.proxy(a))
     end
   end
